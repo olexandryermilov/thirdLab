@@ -8,14 +8,15 @@ void f1(int t)
 {
 	static int a = 0;
 	static int b = 0;
+	std::cout << "Iteration " << t << std::endl;
 	auto localVariable = 0;
-	if (t == 2)
+	if (t <= 2)
 	{
-		std::cout << &localVariable << std::endl;
-		std::cout << &a << std::endl;
-		std::cout << &b << std::endl;
-		std::cout << &t << std::endl;
-		return;
+		std::cout <<"Auto Local Variable "<< &localVariable << std::endl;
+		std::cout <<"Static Local Variable "<< &a << std::endl;
+		std::cout << "Static Variable " << &b << std::endl;
+		std::cout <<"Parameter: " << &t << std::endl;
+		if(t==2)return;
 	}
 	f1(t + 1);
 }
@@ -38,30 +39,30 @@ newClass globalObject;
 void f2(newClass t)
 {
 	static newClass localStaticObject;
-	std::cout << &localStaticObject << std::endl;
-	std::cout << &t << std::endl;
-	//std::cout << &(t.method) << std::endl;
-	std::cout << &(newClass::staticMethod) << std::endl;
+	std::cout <<"Local Static Object "<< &localStaticObject << std::endl;
+	std::cout << "Object-Parameter "<< &t << std::endl;
+	std::cout <<"Method "<< &newClass::method << std::endl;
+	std::cout <<"Static Method "<< &(newClass::staticMethod) << std::endl;
 }
 
 int main()
 {
 	int* t = new int(5);
-	std::cout << &globalVariable<<std::endl;
-	std::cout << &staticGlobalVariable << std::endl;
+	std::cout <<"Global Variable "<< &globalVariable<<std::endl;
+	std::cout <<"Static Global Variable "<< &staticGlobalVariable << std::endl;
 	f1(1);
-	std::cout << t << std::endl;
+	std::cout <<"Dynamic Variable "<< t << std::endl;
 
-	std::cout << &globalObject<<std::endl;
+	std::cout <<"Global Object "<< &globalObject<<std::endl;
 	static newClass staticObject;
-	std::cout << &staticObject<<std::endl;
+	std::cout <<"Static Object "<< &staticObject<<std::endl;
 	auto autoObject = newClass();
-	std::cout << &autoObject<<std::endl;
+	std::cout <<"Auto Object "<< &autoObject<<std::endl;
 
 	newClass tt;
 	tt.data = 1;
 	f2(tt);
-	std::cout << &f2<<std::endl;
+	std::cout <<"Function: "<< &f2<<std::endl;
 	system("pause");
     return 0;
 }
